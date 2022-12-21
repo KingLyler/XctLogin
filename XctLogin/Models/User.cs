@@ -13,11 +13,15 @@ namespace XctLogin.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class User
     {
+        
         public int Id { get; set; }
         [Required(ErrorMessage ="Please enter a username.")]
+        [Display(Name = "Username")]
+        [Remote("doesUsernameExist", "Users", HttpMethod = "POST", ErrorMessage = "Username does not exist!")]
         public string Username { get; set; }
         [Required(ErrorMessage ="Please enter a password.")]
         [DataType(DataType.Password)]

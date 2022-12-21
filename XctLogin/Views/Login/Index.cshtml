@@ -7,73 +7,68 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-    <style>
-        #login-div {
-            position: absolute;
-            left: 40%;
-            top: 40%;
-            border: 1px solid #ccc;
-            padding: 10px 10px;
-        }
+    <title></title>
 
-        .field-validation-error {
-            color: red;
-            font-size: small;
-        }
-    </style>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css" media="all" />
 </head>
+
 <body>
-    <div id="login-div">
-        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-        {
-            <table>
-                <tr>
-                    <td></td>
-                    <td style="text-decoration:underline">Xcentium Code Challenge</td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.LabelFor(m => m.Username)
-                    </td>
-                    <td>
-                        @Html.EditorFor(m => m.Username)
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(m => m.Username) </td>
-                </tr>
+    <!-- login form -->
+    <section class="login-sec">
+        
+                <div class="overlay">
+                    <div class="wrapper">
+                        <div class="logo">
+                            <a class="brand-logo" href="index.html">Xcentium Code Challenge</a>
+                        </div>
+                        <div id="login-div">
+                            @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+                            {
+                                <div class="form-section">
+                                    <h3>Login</h3>
+                                    <h6>To continue with Us</h6>
+                                    <form action="#" method="post" class="signin-form">
+                                        <div class="form-input">
+                                            @Html.EditorFor(m => m.Username)
+                                        </div>
+                                            <div class="validation">
+                                            @Html.ValidationMessageFor(m => m.Username)  
+                                            </div>
+                                        <div class="form-input">
+                                            @Html.EditorFor(m => m.Password)
+                                        </div>
+                                        <div class="validation">
+                                            @Html.ValidationMessageFor(m => m.Password)
+                                        </div>
+                                        <label class="check-remaind">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                            <p class="remember">Remember me</p>
+                                        </label>
+                                      @Html.DisplayFor(m => m.LoginErrorMessage)
 
-                <tr>
-                    <td>@Html.LabelFor(m => m.Password) </td>
-                    <td>@Html.EditorFor(m => m.Password) </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(m => m.Password) </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                    </td>
-                </tr>
+                                        <button type="submit" class="btn btn-primary theme-button mt-4">Log in</button>
+                                        
+                                    </form>
+                                    
+                                </div>
+                            }</div>
+                            </div>
+                <div id='stars'></div>
+                <div id='stars2'></div>
+                <div id='stars3'></div>
 
-                <tr>
-
-                    <td></td>
-                    <td>
-                        <input type="submit" name="name" value="Login" />
-                        <input type="reset" name="name" value="Clear" />
-                    </td>
-                </tr>
-            </table>
-        }
-    </div>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-   
+                            
+        </div>  
+    </section>
+    <script src=@Url.Content("~/Scripts/jquery.validate.min.js")></script>
+    <script src=@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")></script>
 </body>
+
 </html>
