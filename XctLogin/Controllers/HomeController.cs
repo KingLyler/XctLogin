@@ -11,7 +11,7 @@ namespace XctLogin.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View("Index", "_Layout");
         }
     }
 }

@@ -305,6 +305,14 @@ a.brand-logo {
     transform: rotate(45deg);
 }
 
+.navbar-brand {
+    float: left;
+    padding: 15px 15px;
+    font-size: 40px;
+    line-height: 20px;
+    font-family: 'Facebook Letter Faces'
+}
+
 .theme-button {
     transition: 0.3s ease-out;
     display: inline-block;
