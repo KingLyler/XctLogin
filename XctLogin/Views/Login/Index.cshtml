@@ -38,13 +38,17 @@
                                             @Html.EditorFor(m => m.Username)
                                         </div>
                                             <div class="validation">
-                                            @Html.ValidationMessageFor(m => m.Username)  
+                                            @Html.ValidationMessageFor(m => m.Username)
+                                            @Html.DisplayFor(m => m.UsernameNotFound)
+                                              
                                             </div>
                                         <div class="form-input">
                                             @Html.EditorFor(m => m.Password)
                                         </div>
                                         <div class="validation">
                                             @Html.ValidationMessageFor(m => m.Password)
+                                            @Html.DisplayFor(m => m.IncorrectPassword)
+                                            
                                         </div>
                                         <label class="check-remaind">
                                             <input type="checkbox">

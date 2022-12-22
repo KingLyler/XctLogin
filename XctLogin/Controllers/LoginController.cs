@@ -36,29 +36,50 @@ namespace XctLogin.Controllers
                 
                 var userDetails = db.Users.Where(x => x.Username == userModel.Username && x.Password == userModel.Password).FirstOrDefault();
                 var username = db.Users.Where(x => x.Username == userModel.Username);
-
-               // string query = "SELECT COUNT(*) FROM Users WHERE Username = @username";
-               // SqlCommand findId = new SqlCommand(query);
-               //
-               // if (ModelState.IsValid)
-               // {
-                  //  bool idExists = findId > 0;
+                var password = db.Users.Where(x => x.Password == userModel.Password).FirstOrDefault();
+                string loginError = userModel.LoginErrorMessage;
+                string noSuchUser = "Username does not exist!";
 
 
-                    if (userDetails == null)
-                    {
-                        userModel.LoginErrorMessage = "Please enter username and password.";
-                        return View("Index", userModel);
-
-                    }
-                    else
+                // string query = "SELECT COUNT(*) FROM Users WHERE Username = @username";
+                // SqlCommand findId = new SqlCommand(query);
+                //
+                // if (ModelState.IsValid)
+                // {
+                //  bool idExists = findId > 0;
+                try
+                {
+                     if (userDetails != null )
                     {
                         Session["Id"] = userDetails.Id;
                         Session["Name"] = userDetails.Name;
                         Session["Username"] = userDetails.Username;
                         return RedirectToAction("Index", "Home");
+
                     }
-               // }
+                     else if (username.Count() != 1)
+                     {
+                      userModel.UsernameNotFound = noSuchUser;
+                      return View("Index", userModel);
+                     }
+                      else if (userModel.ConfirmPassword == null)
+                      {
+                      userModel.IncorrectPassword = "Incorrect password";
+                              return View("Index", userModel);
+                      }
+                   else 
+                    {
+                        userModel.LoginErrorMessage = "Please enter username and password.";
+                        return View("Index", userModel);
+
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    return View(ex);
+                }
+               
             }
             
         }

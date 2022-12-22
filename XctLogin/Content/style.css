@@ -91,7 +91,7 @@ ol {
 .login-sec {
     position: relative;
     height: 100vh;
-    background: url(../images/bgimage.jpg) no-repeat 0px 0px;
+    background: url(images/bgimage.jpg) no-repeat 0px 0px;
     background-size: cover;
 }
 
@@ -167,8 +167,11 @@ a.brand-logo {
     background: rgba(249, 250, 255, 0.09);
     display: grid;
     align-items: center;
-    border: 1px solid #dcdcdc;
+    border: 2px;
     border-radius: 4px;
+    border-color : indianred;
+    background-color: floralwhite;
+    
 }
 
 .login-sec .checkbox {
@@ -425,7 +428,7 @@ a.brand-logo {
     }
 
     to {
-        transform: translateY(-2000px);
+        transform: translateY(-1000px);
     }
 }
 
@@ -435,6 +438,6 @@ a.brand-logo {
     }
 
     to {
-        transform: translateY(-2000px);
+        transform: translateY(-1000px);
     }
 }

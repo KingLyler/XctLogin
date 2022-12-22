@@ -26,5 +26,6 @@ namespace XctLogin.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
+       
     }
 }

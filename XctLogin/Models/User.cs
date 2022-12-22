@@ -14,20 +14,28 @@ namespace XctLogin.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using System.Threading.Tasks;
+
 
     public partial class User
     {
-        
+
         public int Id { get; set; }
-        [Required(ErrorMessage ="Please enter a username.")]
+        [Required(ErrorMessage = "Please enter a username.")]
         [Display(Name = "Username")]
         [Remote("doesUsernameExist", "Users", HttpMethod = "POST", ErrorMessage = "Username does not exist!")]
         public string Username { get; set; }
-        [Required(ErrorMessage ="Please enter a password.")]
+        [Required(ErrorMessage = "Please enter a password.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [System.ComponentModel.DataAnnotations.Compare("Password")]
+        public string ConfirmPassword { get; set; }
         public string Name { get; set; }
 
         public string LoginErrorMessage { get; set; }
+        public string UsernameNotFound { get; set; }
+        public string IncorrectPassword { get; set; }
     }
 }
+
+ 
