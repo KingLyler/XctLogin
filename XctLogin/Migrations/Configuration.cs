@@ -1,10 +1,7 @@
 ﻿namespace XctLogin.Migrations
 {
-    using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
     using XctLogin.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<XctLogin.Data_Access_Layer.LoginContext>

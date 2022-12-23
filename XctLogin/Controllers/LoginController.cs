@@ -1,76 +1,85 @@
-﻿using Microsoft.Ajax.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Xml;
 using XctLogin.Models;
 
 namespace XctLogin.Controllers
 {
     public class LoginController : Controller
     {
-       // LoginDatabaseEntities db = new LoginDatabaseEntities();
+        public string UserNotFoundErrorMessage = "Username does not exist.";
+        public string PasswordErrorMessage = "Incorrect password.";
+
         public ActionResult Index()
         {
             //var data = db.Users.OrderByDescending(x => x.Id).Select(s => s).ToList();
-            return View("Index");
+            var viewModel = new LoginViewModel();
+            return View("Index", viewModel);
         }
 
         [HttpPost]
-        public JsonResult doesUsernameExist(XctLogin.Models.User Username)
+        public JsonResult DoesUsernameExist(User username)
         {
-            var user = Membership.GetUser(Username);
+            var user = Membership.GetUser(username);
             return Json(user != null);
         }
 
         
         [HttpPost]
-        public ActionResult Authorize(XctLogin.Models.User userModel)
+        public ActionResult Authorize(LoginViewModel loginViewModel)
         {
-            using (LoginDatabaseEntities db = new LoginDatabaseEntities())
+            using (var db = new LoginDatabaseEntities())
             {
-                
-                var userDetails = db.Users.Where(x => x.Username == userModel.Username && x.Password == userModel.Password).FirstOrDefault();
-                var username = db.Users.Where(x => x.Username == userModel.Username);
-                var password = db.Users.Where(x => x.Password == userModel.Password).FirstOrDefault();
-                string loginError = userModel.LoginErrorMessage;
-                string noSuchUser = "Username does not exist!";
-
                 try
                 {
-                     if (userDetails != null )
+                    //Set errors back to blank
+                    loginViewModel.UsernameNotFound = string.Empty;
+                    loginViewModel.IncorrectPassword = string.Empty;
+                    loginViewModel.LoginErrorMessage = string.Empty;
+
+                    //Set Loading to disable button
+                    loginViewModel.Loading = true;
+
+                    //Check for valid user on both inputs
+                    var userDetails = db.Users.FirstOrDefault(x => x.Username == loginViewModel.User.Username && x.Password == loginViewModel.User.Password);
+                    if (userDetails != null)
                     {
                         Session["Id"] = userDetails.Id;
                         Session["Name"] = userDetails.Name;
                         Session["Username"] = userDetails.Username;
                         return RedirectToAction("Index", "Home");
-
                     }
-                     else if (username.Count() != 1)
-                     {
-                      userModel.UsernameNotFound = noSuchUser;
-                      return View("Index", userModel);
-                     }
-                      else if (userModel.ConfirmPassword == null)
-                      {
-                      userModel.IncorrectPassword = "Incorrect password";
-                              return View("Index", userModel);
-                      }
-                   else 
+
+                    //If valid user not found, validate only username
+                    var userFoundByUsername = db.Users.FirstOrDefault(x => x.Username == loginViewModel.User.Username);
+                    if (userFoundByUsername == null)
                     {
-                        userModel.LoginErrorMessage = "Please enter username and password.";
-                        return View("Index", userModel);
-
+                        loginViewModel.UsernameNotFound = UserNotFoundErrorMessage;
+                        loginViewModel.Loading = false;
+                        return View("Index", loginViewModel);
                     }
-                   
+
+                    //If valid user not found, and the username is valid, validate the username and password
+                    var userFoundByPasswordAndUsername = db.Users.FirstOrDefault(x => x.Username.Equals(userFoundByUsername.Username) && x.Password == loginViewModel.User.Password);
+                    if (userFoundByPasswordAndUsername == null)
+                    {
+                        loginViewModel.IncorrectPassword = PasswordErrorMessage;
+                        loginViewModel.Loading = false;
+                        return View("Index", loginViewModel);
+                    }
+
+                    // Else give general error
+                    loginViewModel.LoginErrorMessage = UserNotFoundErrorMessage;
+                    loginViewModel.Loading = false;
+                    return View("Index", loginViewModel);
                 }
+
                 catch (Exception ex)
                 {
-                    return View(ex);
+                    loginViewModel.Loading = false;
+                    loginViewModel.LoginErrorMessage = ex.Message;
+                    return View("Index", loginViewModel);
                 }
                
             }

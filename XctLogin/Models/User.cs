@@ -9,12 +9,8 @@
 
 namespace XctLogin.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    using System.Threading.Tasks;
 
 
     public partial class User
@@ -29,13 +25,6 @@ namespace XctLogin.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [System.ComponentModel.DataAnnotations.Compare("Password")]
-        public string ConfirmPassword { get; set; }
         public string Name { get; set; }
-
-        public string LoginErrorMessage { get; set; }
-        public string UsernameNotFound { get; set; }
-        public string IncorrectPassword { get; set; }
     }
 }
-
- 

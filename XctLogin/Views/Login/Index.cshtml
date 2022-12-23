@@ -1,4 +1,4 @@
-﻿@model XctLogin.Models.User
+﻿@model XctLogin.Models.LoginViewModel
 @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -22,54 +22,47 @@
 <body>
     <!-- login form -->
     <section class="login-sec">
-        
-                <div class="overlay">
-                    <div class="wrapper">
-                        <div class="logo">
-                            <a class="brand-logo" href="index.html">Xcentium Code Challenge</a>
-                        </div>
-                        <div id="login-div">
-                            @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-                            {
-                                <div class="form-section">
-                                    <h3>Login</h3>
-                                    <h6>Enter Credentials to Continue</h6>
-                                    <form action="#" method="post" class="signin-form">
-                                        <div class="form-input">
-                                            @Html.EditorFor(m => m.Username)
-                                        </div>
-                                            <div class="validation">
-                                            @Html.ValidationMessageFor(m => m.Username)
-                                            @Html.DisplayFor(m => m.UsernameNotFound)
-                                              
-                                            </div>
-                                        <div class="form-input">
-                                            @Html.EditorFor(m => m.Password)
-                                        </div>
-                                        <div class="validation">
-                                            @Html.ValidationMessageFor(m => m.Password)
-                                            @Html.DisplayFor(m => m.IncorrectPassword)
-                                            
-                                        </div>
-                                        
-                                      @Html.DisplayFor(m => m.LoginErrorMessage)
-
-                                        <button type="submit" class="btn btn-primary theme-button mt-4">Log in</button>
-                                        
-                                    </form>
-                                    
+        <div class="overlay">
+            <div class="wrapper">
+                <div class="logo">
+                    <a class="brand-logo" href="index.html">Xcentium Code Challenge</a>
+                </div>
+                <div id="login-div">
+                    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+                    {
+                        <div class="form-section">
+                            <h3>Login</h3>
+                            <h6>Enter Credentials to Continue</h6>
+                            <form action="#" method="post" class="signin-form">
+                                <div class="form-input">
+                                    @Html.EditorFor(m => m.User.Username, new { htmlAttributes = new { placeholder = "Username" } })
                                 </div>
-                            }</div>
-                            </div>
-                <div id='stars'></div>
-                <div id='stars2'></div>
-                <div id='stars3'></div>
+                                <div class="validation">
+                                    @Html.ValidationMessageFor(m => m.User.Username)
+                                    @Html.DisplayFor(m => m.UsernameNotFound)
 
-                            
-        </div>  
+                                </div>
+                                <div class="form-input">
+                                    @Html.EditorFor(m => m.User.Password, new { htmlAttributes = new { placeholder = "Password" }})
+                                </div>
+                                <div class="validation">
+                                    @Html.ValidationMessageFor(m => m.User.Password)
+                                    @Html.DisplayFor(m => m.IncorrectPassword)
+                                </div>
+
+                                @Html.DisplayFor(m => m.LoginErrorMessage)
+                                <button type="submit" class="btn btn-primary theme-button mt-4" style="@(Model.Loading ? "display:none" : "display:block")">Log in</button>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        </div>
     </section>
     <script src=@Url.Content("~/Scripts/jquery.validate.min.js")></script>
     <script src=@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")></script>
 </body>
-
 </html>
