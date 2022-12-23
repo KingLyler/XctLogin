@@ -1,5 +1,6 @@
 ﻿@model XctLogin.Models.User
 @{
+    ViewBag.Title = "Index";
     Layout = null;
 }
 
@@ -32,7 +33,7 @@
                             {
                                 <div class="form-section">
                                     <h3>Login</h3>
-                                    <h6>To continue with Us</h6>
+                                    <h6>Enter Credentials to Continue</h6>
                                     <form action="#" method="post" class="signin-form">
                                         <div class="form-input">
                                             @Html.EditorFor(m => m.Username)

@@ -17,7 +17,7 @@ namespace XctLogin.Controllers
         public ActionResult Index()
         {
             //var data = db.Users.OrderByDescending(x => x.Id).Select(s => s).ToList();
-            return View();
+            return View("Index");
         }
 
         [HttpPost]
@@ -40,13 +40,6 @@ namespace XctLogin.Controllers
                 string loginError = userModel.LoginErrorMessage;
                 string noSuchUser = "Username does not exist!";
 
-
-                // string query = "SELECT COUNT(*) FROM Users WHERE Username = @username";
-                // SqlCommand findId = new SqlCommand(query);
-                //
-                // if (ModelState.IsValid)
-                // {
-                //  bool idExists = findId > 0;
                 try
                 {
                      if (userDetails != null )
@@ -83,11 +76,11 @@ namespace XctLogin.Controllers
             }
             
         }
-
+        [HttpPost]
+        [Authorize]
         public ActionResult LogOut()
         {
-            int Id = (int)Session["Id"];
-            Session.Abandon();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
         }
     }

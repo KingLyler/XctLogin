@@ -1,8 +1,9 @@
 ﻿@model XctLogin.Models.User
     
 @{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+
+    Layout = "_Layout";
 
     if (Session["Id"] == null)
     {
@@ -10,19 +11,18 @@
     }
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link rel="stylesheet" href="~/Content/Site.css" type="text/css" media="all" />
-</head>
-<body>
-    <div> 
-        <h1>Welcome @Session["Name"]!</h1>
-        <a href="@Url.Action("LogOut", "Login")">LogOut</a>
-        <img src="~/Content/bgimage.jpg" />
+<div class="overlay">
+    <div class="hero-image">
+        <img src="~/Content/images/hero-image.jpeg" />
+        <div class="hero-text">
+            <h1 style="font-size: 50px">Welcome @Session["Name"]!</h1>
+            <p></p>
+            <p>This is the MVC version of</p>
+            <p>my code challenge for</p>
+            <p>Xcentium.</p>
+            <p>Thank you for visiting!</p>
+        </div>
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
     </div>
-</body>
-</html>

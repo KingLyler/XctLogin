@@ -13,5 +13,7 @@ namespace XctLogin.Controllers
         {
             return View("Index", "_Layout");
         }
+       
+     
     }
 }

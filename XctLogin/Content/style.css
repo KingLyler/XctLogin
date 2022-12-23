@@ -8,11 +8,36 @@ html {
     margin: 0;
     padding: 0;
     color: #585858;
+    background-color: #30465934;
 }
 
+main {
+    
+}
 * {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.hero-image {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("images/hero-image.jpeg");
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    
+    
+}
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Facebook Letter Faces';
 }
 
 /*  wrapper */
@@ -73,7 +98,7 @@ a {
 
 h1,
 h2,
-h3,
+
 h4,
 h5,
 h6,
@@ -82,6 +107,9 @@ ul,
 ol {
     margin: 0;
     padding: 0;
+}
+h3{
+    color:aliceblue;
 }
 
 .validation{
@@ -116,10 +144,13 @@ a.brand-logo {
 .login-sec .form-section {
     max-width: 400px;
     margin: 20px auto;
-    padding: 2rem 3rem;
+    padding: 2rem 4rem;
     border-radius: 4px;
     box-shadow: 0px 9px 24px 5px rgba(0, 0, 0, 0.04);
-    background: #fff;
+    background: rgb(29, 75, 174, 0.26);
+    border:5px groove #f8e57849; 
+    
+    
 }
 
 .login-sec .form-section h3 {
@@ -141,8 +172,8 @@ a.brand-logo {
 .login-sec .form-input input[type="email"],
 .login-sec .form-input input[type="password"],
 .login-sec .form-input input[type="text"] {
-    background: #fff;
-    border: none;
+    background: #5a5a5a29;
+    border:3px groove #8b00008e;
     outline: none;
     width: 100%;
     font-size: 16px;
@@ -151,6 +182,7 @@ a.brand-logo {
     -webkit-appearance: none;
     border: 1px solid #eee;
     border-radius: 4px;
+    
 }
 
 .login-sec .form-input input[type="email"]:focus,
@@ -167,9 +199,9 @@ a.brand-logo {
     background: rgba(249, 250, 255, 0.09);
     display: grid;
     align-items: center;
-    border: 2px;
+    border: 1px groove;
     border-radius: 4px;
-    border-color : indianred;
+    border-color : #000000;
     background-color: floralwhite;
     
 }
@@ -308,7 +340,7 @@ a.brand-logo {
 .navbar-brand {
     float: left;
     padding: 15px 15px;
-    font-size: 40px;
+    font-size: 25px;
     line-height: 20px;
     font-family: 'Facebook Letter Faces'
 }
@@ -329,6 +361,9 @@ a.brand-logo {
     margin-top: 20px;
 }
 
+main{
+    margin-top: 10px;
+}
 
 /*  copyright */
 .copy-right {

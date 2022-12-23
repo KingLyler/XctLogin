@@ -22,7 +22,9 @@
 
                 new User { Id = 2, Username = "mary", Password = "1111111", Name = "Mary Kim"},
 
-                new User { Id = 3, Username = "johndoe", Password = "222222", Name = "John Doe"}
+                new User { Id = 3, Username = "johndoe", Password = "222222", Name = "John Doe"},
+
+                new User { Id = 4, Username = "k", Password = " ", Name = "Admin"}
             };
             users.ForEach(s => context.Users.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();

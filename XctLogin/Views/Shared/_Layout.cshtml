@@ -1,43 +1,72 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+   
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/bootstrap.css")
-    @Scripts.Render("~/Scripts/modernizr-2.8.3.js")
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/Content/style.css"/>
+    <link rel="stylesheet" href="~/Content/Site.css"/>
+
+    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <nav class="navbar-expand-md bg-dark navbar-dark bg-primary fixed-top">
+
+
+
+            <a class="navbar-brand" href="#">Xcentium Code Challenge</a>
+            <button class="navbar-toggler" type="button" 
+                    data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    
+                    @using (@Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <button class="btn btn-secondary" style="margin-top:5px; margin-right:2.5px;" href="javascript:;" onclick="document.forms[0].submit">Home</button>
+                        }
+                   
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                        {
+                            <button class="btn btn-secondary" style="margin-top:5px; margin-left:2.5px;" href="javascript:;" onclick="document.forms[0].submit();">Logout</button>
+                        }
+
+                </div>
+
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+
+
+        </nav>
+   
+</header>
+    <main>
         @RenderBody()
+    </main>
+       
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
-
-    @Scripts.Render("~/Scripts/jquery")
-    @Scripts.Render("~/Scripts/bootstrap.bundle.js")
-    @RenderSection("scripts", required: false)
+    
+    <script src=@Url.Content("~/Scripts/jquery-3.6.1.min.js")></script>
+    <script src=@Url.Content("~/Scripts/bootstrap.min.js")></script>
+    <script src=@Url.Content("~/Scripts/popper.min.js")></script>
 </body>
 </html>
