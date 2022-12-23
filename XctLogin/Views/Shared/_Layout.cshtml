@@ -1,7 +1,9 @@
 ﻿@{ 
-   
+
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     string action = ViewContext.RouteData.Values["action"].ToString();
+    string cssBundle = "~/Content/css";
+    string scriptBundle = "~/Scripts/scripts";
 }
 <!DOCTYPE html>
 <html>
@@ -9,13 +11,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/Content/style.css"/>
-    <link rel="stylesheet" href="~/Content/Site.css"/>
-
-    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
+    @Styles.Render(cssBundle)    
+    @Scripts.Render(scriptBundle)
 
 </head>
 <body>
@@ -56,7 +53,14 @@
    
 </header>
     <main>
-        @RenderBody()
+        <div class="overlay">
+            <div class="hero-image">
+                @RenderBody()
+                <div id='stars'></div>
+                <div id='stars2'></div>
+                <div id='stars3'></div>
+            </div>
+        </div>
     </main>
        
 
@@ -65,8 +69,6 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     
-    <script src=@Url.Content("~/Scripts/jquery-3.6.1.min.js")></script>
-    <script src=@Url.Content("~/Scripts/bootstrap.min.js")></script>
-    <script src=@Url.Content("~/Scripts/popper.min.js")></script>
+   
 </body>
 </html>

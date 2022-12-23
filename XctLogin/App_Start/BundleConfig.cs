@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using System.Web;
+using System.Web.Optimization;
 
 namespace XctLogin
 {
@@ -7,6 +8,7 @@ namespace XctLogin
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+          
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -22,9 +24,15 @@ namespace XctLogin
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
                       "~/Content/style.css"));
+            bundles.Add(new StyleBundle("~/Scripts/scripts").Include(
+                      "~/Scripts/jquery-3.6.1.min.js",
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/popper.min.js"));
+
+
         }
     }
 }

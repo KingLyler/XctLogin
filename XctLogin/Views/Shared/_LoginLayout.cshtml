@@ -1,0 +1,32 @@
+﻿@{string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+    string cssBundle = "~/Content/css";
+    string scriptBundle = "~/Scripts/scripts";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title - Login</title>
+    @Styles.Render(cssBundle)
+    @Scripts.Render(scriptBundle)
+
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+    <section class="login-sec">
+        <div class="overlay">
+            <div class="wrapper">
+                @RenderBody()
+                <div id='stars'></div>
+                <div id='stars2'></div>
+                <div id='stars3'></div>
+            </div>
+        </div>
+</section>
+</body>
+</html>
